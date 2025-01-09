@@ -1,15 +1,11 @@
-let menu = document.querySelector('.menu');
+const root = document.querySelector(":root");
+const menuBtn = document.querySelector(".menu");
 let changed = false;
 
-menu.addEventListener('click', () => {
-    if (!changed) {
-        menu.className = 'menuA'
-        changed = true;
-        menu = document.querySelector('.menuA');
-    }
-    else{
-        menu.className = 'menu'
-        changed = false;
-        menu = document.querySelector('.menu');
-    }
-})
+menuBtn.addEventListener("click", () => {
+    menuBtn.classList.contains("active")
+        ? (menuBtn.classList.remove("active"),
+          root.style.setProperty("--side-size", "0rem"))
+        : (menuBtn.classList.add("active"),
+          root.style.setProperty("--side-size", "20rem"));
+});
