@@ -36,10 +36,12 @@ header{
     align-items: end;
     justify-content: right;
     width: 100%;
-    display: flex;
+    display: inline-flex;
+    position: fixed;
+    margin-top: 1.3rem;
 }
 
-.upper_menu>button{
+.upper_menu>button, .upper_menu>input{
     background-color: #000000;
     border: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -67,19 +69,17 @@ header{
     transition: 0.8s;
     cursor: pointer;
     margin-left: 4vh;
+    z-index: 2;
 }
 
-.upper_menu>button:hover{
+.upper_menu>button:hover, .upper_menu>input:hover{
     height: 100%;
     transform: translateY(-15%);  
     text-shadow: 0px 3px 10px #fff;
 }
 
-.logIn{
-    color: #ff0000;
-}
-
 .menu.active{
+    z-index: 2;
     background-color: #00000000;
     border: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
