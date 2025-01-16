@@ -1,102 +1,90 @@
 *,
 *::after,
-*::before{
+*::before {
     margin: 0;
     padding: 0;
-    display: block;
-    transition: all 0.4s ease-in-out;
+    box-sizing: border-box;
 }
-
 
 :root {
     scroll-behavior: smooth;
     --head-height: 4rem;
     --side-size: 0rem;
-    --menu-size: 20vw;
-    --main-font: "Century Gothic";
+    --menu-size: 20rem;
+    --main-font:  'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-body{
+body {
     height: 100vh;
     display: grid;
     grid-template-areas:
-        "head head"
         "side main";
-    grid-template-rows: var(--head-height) auto;
-    grid-template-columns: var(--side-size) auto;
+    grid-template-columns: var(--side-size) 1fr;
+    overflow: hidden;
+    transition: grid-template-columns 0.4s ease-in-out;
 }
 
-header{
-    grid-area: head;
-    display: flex;
-    background-color: #000000;
-}
-
-.upper_menu{
-    align-items: end;
-    justify-content: right;
-    width: 100%;
-    display: inline-flex;
+header {
     position: fixed;
-    margin-top: 1.3rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--head-height);
+    background-color: #000;
+    color: #fff;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.upper_menu>button, .upper_menu>input{
-    background-color: #000000;
+.upper_menu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.upper_menu > button,
+.upper_menu > input {
+    background-color: transparent;
     border: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: var(--main-font);
     font-size: larger;
     font-weight: 300;
-    min-height: 100%;
-    height: auto;
-    margin-right: 3%;
     color: #fff;
-    display: inline;
-    transition: 0.8s;
+    margin-right: 1rem;
     cursor: pointer;
+    transition: transform 0.4s, text-shadow 0.4s;
 }
 
-.menu{
-    background-color: #00000000;
+.upper_menu > button:hover,
+.upper_menu > input:hover {
+    transform: translateY(-10%);
+    text-shadow: 0 3px 10px rgba(255, 255, 255, 0.8);
+}
+
+.menu {
+    background-color: transparent;
     border: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 39px;
-    font-weight: bolder;
-    max-height: 100%;
-    height: auto;
+    font-family: var(--main-font);
+    font-size: 2rem;
+    font-weight: bold;
     color: #fff;
-    display: inline;
-    transition: 0.8s;
     cursor: pointer;
-    margin-left: 4vh;
-    z-index: 2;
+    transition: transform 0.4s;
 }
 
-.upper_menu>button:hover, .upper_menu>input:hover{
-    height: 100%;
-    transform: translateY(-15%);  
-    text-shadow: 0px 3px 10px #fff;
+.menu.active {
+    transform: rotate(90deg);
 }
 
-.menu.active{
-    z-index: 2;
-    background-color: #00000000;
-    border: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 39px;
-    font-weight: bolder;
-    max-height: 100%;
-    height: auto;
-    color: #fff;
-    display: inline;
-    transition: 0.8s;
-    cursor: pointer;
-    margin-left: 4vh;
-    transform: rotateZ(90deg);
-}
-
-.side_bar{
+.side_bar {
     grid-area: side;
     overflow-y: auto;
-    border: 2px solid gray;
+    height: calc(100vh - var(--head-height));
+    margin-top: var(--head-height);
+    border-right: 2px solid gray;
+    transition: width 0.4s ease-in-out;
+    width: var(--side-size);
 }
