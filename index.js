@@ -2,13 +2,20 @@ const root = document.querySelector(":root");
 const menuBtn = document.querySelector(".menu");
 const grid = document.getElementById("can");
 const timeLine = document.getElementById("timeLine");
+const timeMark = document.getElementById("timeMark");
 const gridCtx = grid.getContext("2d");
 const timeLineCtx = timeLine.getContext("2d");
+const timeMarkCtx = timeMark.getContext("2d");
+let timeLineGradient = timeLineCtx.createLinearGradient(50, 0, 260, 20);
+timeLineGradient.addColorStop(0, "blue");
+timeLineGradient.addColorStop(1, "white");
 let changed = false;
 grid.width = window.innerWidth;
 grid.height = window.innerHeight;
 timeLine.width = 250;
-timeLine.height = 20;
+timeLine.height = 30;
+timeMark.width = 50;
+timeMark.height = 50;
 let gridSize = 40;
 
 menuBtn.addEventListener("click", () => {
@@ -42,13 +49,30 @@ function draw() {
     gridCtx.stroke();
   }
 
+
+  
   timeLineCtx.clearRect(0, 0, timeLine.width, timeLine.height);
-  timeLineCtx.fillStyle = "blue";
+  timeLineCtx.fillStyle = timeLineGradient;
   timeLineCtx.fillRect(0, 0, timeLine.width, timeLine.height);
   timeLineCtx.font = "18px Franklin Gothic Medium";
   timeLineCtx.fillStyle = "white";
   timeLineCtx.lineWidth = 1;
-  timeLineCtx.fillText("Text", 10, 15);
+  timeLineCtx.fillText("TEXT", 10, 20);
+
+  timeMarkCtx.clearRect(0, 0, timeMark.width, timeMark.height);
+  timeMarkCtx.fillStyle = "#28b840";
+  timeMarkCtx.fillRect(0, 0, timeMark.width, timeMark.height-10);
+  timeMarkCtx.beginPath();
+  timeMarkCtx.moveTo((timeMark.width/2)-10, timeMark.height-10);
+  timeMarkCtx.lineTo(timeMark.width/2, timeMark.height);
+  timeMarkCtx.lineTo((timeMark.width / 2) + 10, timeMark.height-10);
+  timeMarkCtx.closePath();
+  timeMarkCtx.fillStyle = "#28b840";
+  timeMarkCtx.fill();
+  timeMarkCtx.font = "18px Franklin Gothic Medium";
+  timeMarkCtx.fillStyle = "white";
+  timeMarkCtx.lineWidth = 1;
+  timeMarkCtx.fillText("TEXT", 6, 25);
 }
 
 window.addEventListener("resize", () => {
@@ -59,6 +83,12 @@ window.addEventListener("resize", () => {
   draw();
 });
 
+
+
+
+
+
+
 class TimeLine {
   constructor(id, width, height, text) {
     this.canvas.id = id;
@@ -66,12 +96,5 @@ class TimeLine {
     this.canvas.height = height;
     this.canvas.text = text;
     this.getContext("2d");
-
-    window.addEventListener("resize", () => this.resize());
-  }
-
-  resize() {
-    this.canvas.width = this.canvas.offsetWidth;
-    this.canvas.height = this.canvas.offsetHeight;
   }
 }

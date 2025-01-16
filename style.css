@@ -90,6 +90,14 @@ header {
     overflow-x: hidden;
 }
 
+fieldset{
+    margin-top: 3%;
+}
+
 #timeLine{
     margin: 10% 10%;
+}
+
+#timeMark{
+    margin: 10% 40%;
 }
