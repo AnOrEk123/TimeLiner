@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function draw() {
   gridCtx.clearRect(0, 0, grid.width, grid.height);
 
-  for (let i = 0; i < grid.height; i += gridSize) {
+  for (let i = 64; i < grid.height; i += gridSize) {
     gridCtx.beginPath();
     gridCtx.moveTo(0, i);
     gridCtx.lineTo(grid.width, i);
@@ -83,6 +83,23 @@ window.addEventListener("resize", () => {
   draw();
 });
 
+// window.addEventListener('scroll', () => {
+
+// })
+
+
+zoomContainer.addEventListener('scrol', function () {
+  const zoomContainer = document.querySelector('.zoom-container');
+  // const img = zoomContainer.querySelector('img');
+ 
+  zoomContainer.addEventListener('mouseenter', function () {
+    zoomContainer.style.transform = 'scale(2)';
+  });
+ 
+  zoomContainer.addEventListener('mouseleave', function () {
+    zoomContainer.style.transform = 'scale(1)';
+  });
+});
 
 
 
