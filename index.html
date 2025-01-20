@@ -14,11 +14,20 @@
                 <button>Помощь</button>
                 <button>О нас</button>
                 <button class="logIn">Вход</button>
-                <input type="file" accept=".json">
+                <input type="file" accept=".json" id="inputBtn">
             </div>
     </header>
-    <div class="side_bar">asd</div>
-    <canvas id="can" width="window" height="window"></canvas>
+    <div class="side_bar">
+        <fieldset>
+            <canvas id="timeLine"></сanvas>
+        </fieldset>
+        <fieldset>
+            <canvas id="timeMark"></сanvas>
+        </fieldset>
+    </div>
+    <div class="zoom-container">
+        <canvas id="can" width="device-width" height="window"></canvas>
+    </div>
 </body>
 <script src="index.js"></script>
 </html>
